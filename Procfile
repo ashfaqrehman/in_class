@@ -1,1 +1,1 @@
-web: gunicorn in_class:app
+web: gunicorn arehman-in-class:app
