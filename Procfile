@@ -1,1 +1,1 @@
-web: gunicorn arehman-in-class.wsgi
+web: gunicorn in_class.wsgi
