@@ -24,7 +24,7 @@ class Post(models.Model):
         help_text='Set to "Published" to make pubblic'
     )
     slug = models.SlugField(
-        null=True,
+        null=False,
         unique_for_date='published',
     )
     content = models.TextField()
@@ -41,7 +41,7 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete = models.PROTECT,
         related_name = 'blog_posts',
-        null = True,
+        null = False,
     )
 
     class Meta:
