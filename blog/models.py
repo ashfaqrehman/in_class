@@ -1,6 +1,19 @@
 from django.conf import settings
 from django.db import models
 
+class Topic(models.Model):
+    name = models.CharField(
+        max_length=50,
+        unique=True
+    )
+
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-name']
 
 class Post(models.Model):
     """
@@ -27,6 +40,12 @@ class Post(models.Model):
         null=False,
         unique_for_date='published',
     )
+    
+    topics = models.ManyToManyField(
+        Topic,
+        related_name='blog_posts'
+    )
+    
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
